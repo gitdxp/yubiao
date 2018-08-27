@@ -35,7 +35,7 @@ if(!getpersistentnumbernote("TEM Control:Default Values:Z Axis Jiggle (nm)",defa
 
 
 number defaultbrightnessstep=200 // arbitrary value
-
+//亮度步长
 if(!getpersistentnumbernote("TEM Control:Default Values:Brightness Step Size",defaultbrightnessstep))
 	{
 		setpersistentnumbernote("TEM Control:Default Values:Brightness Step Size",defaultbrightnessstep)
@@ -43,24 +43,24 @@ if(!getpersistentnumbernote("TEM Control:Default Values:Brightness Step Size",de
 
 
 number defaultfocusstep=50 // value of focus change in nm
-
+//聚焦步长
 if(!getpersistentnumbernote("TEM Control:Default Values:Focus Step Size (nm)",defaultfocusstep))
-	{
-		setpersistentnumbernote("TEM Control:Default Values:Focus Step Size (nm)",defaultfocusstep)
-	}
+{
+	setpersistentnumbernote("TEM Control:Default Values:Focus Step Size (nm)",defaultfocusstep)
+}
 
 
 
 number defaultstageshiftstepvalue=100 // amount the stage is shifted in nm
-
+平面高度
 if(!getpersistentnumbernote("TEM Control:Default Values:Stage Shift Step Size (nm)",defaultstageshiftstepvalue))
-	{
-		setpersistentnumbernote("TEM Control:Default Values:Stage Shift Step Size (nm)",defaultstageshiftstepvalue)
-	}
+{
+	setpersistentnumbernote("TEM Control:Default Values:Stage Shift Step Size (nm)",defaultstageshiftstepvalue)
+}
 
 
 number defaultzshiftstepvalue=200 // amount the z height is changed in nm
-
+立体高度
 if(!getpersistentnumbernote("TEM Control:Default Values:Z Shift Step Size (nm)",defaultzshiftstepvalue))
 	{
 		setpersistentnumbernote("TEM Control:Default Values:Z Shift Step Size (nm)",defaultzshiftstepvalue)
@@ -77,7 +77,7 @@ if(!getpersistentnumbernote("TEM Control:Default Values:Image Shift Step Size (n
 
 
 number defaultstagetiltstepvalue=0.1 // amount the stage alpha or beta are changed in degrees
-
+弧度
 if(!getpersistentnumbernote("TEM Control:Default Values:Stage Tilt Step Size (deg)",defaultstagetiltstepvalue))
 	{
 		setpersistentnumbernote("TEM Control:Default Values:Stage Tilt Step Size (deg)",defaultstagetiltstepvalue)
@@ -91,7 +91,7 @@ class TEMControlDialog : uiframe
 {
 
 
-void stagedown( object self)
+void stagedown( object self)		//平面下移
 	{
 		// Get the step size from the field
 	
@@ -99,7 +99,7 @@ void stagedown( object self)
 		stageshiftstep=stageshiftstep/1000
 		
 
-		// Source the current image shifts
+		// Source the current image shifts  源当前图像偏移
 		
 		number currentxshift, currentyshift
 		emgetstagexy(currentxshift, currentyshift)
@@ -311,7 +311,7 @@ void imageup( object self)
 				
 				emsetimageshift(0,0)
 				return
-			}
+			}//如果ALT按下，提示语句：是否重置x,y？取消就Return ,确认就设为0
 
 		// Set the image shift to increment in the up direction
 		
@@ -556,8 +556,8 @@ void downfocus( object self)
 	
 void alphaplus(object self)
 		{
-				number anglestep=dlggetvalue(self.lookupelement("stagetiltstepfield"))
-				number currentangle=emgetstagealpha()
+				number anglestep=dlggetvalue(self.lookupelement("stagetiltstepfield"))//获取到的步长值 
+				number currentangle=emgetstagealpha()//当前 角度值 
 				emsetstagealpha(currentangle+anglestep)
 		}
 	
@@ -672,7 +672,7 @@ void abouttoclosedocument(object self)
 }
 
 
-// Control Palette creation functions
+// Control Palette creation functions  控制调色板创建功能
 
 TagGroup MakeLabels()
 	{
